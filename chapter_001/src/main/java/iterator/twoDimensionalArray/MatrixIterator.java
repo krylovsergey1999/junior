@@ -25,15 +25,14 @@ public class MatrixIterator implements Iterable<Integer> {
             }
 
             public Integer next() {
-                if (hasNext()) {
-                    column++;
-                    if (column == size_line) {
-                        line++;
-                        size_line = arr[line].length;
-                        column = 0;
-                    }
-                } else {
+                if (!hasNext()) {
                     throw new IndexOutOfBoundsException();
+                }
+                column++;
+                if (column == size_line) {
+                    line++;
+                    size_line = arr[line].length;
+                    column = 0;
                 }
                 return arr[line][column];
             }
