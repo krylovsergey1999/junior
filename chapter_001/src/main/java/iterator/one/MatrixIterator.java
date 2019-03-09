@@ -1,4 +1,4 @@
-package iterator.twoDimensionalArray;
+package iterator.one;
 
 import java.util.Iterator;
 
@@ -9,19 +9,14 @@ public class MatrixIterator implements Iterable<Integer> {
     public Iterator<Integer> iterator() {
         Iterator<Integer> it = new Iterator<Integer>() {
             private int line = 0;
-            private int size_line = arr[line].length;
+            private int sizeLine = arr[line].length;
             private int column = -1;
 
             public boolean hasNext() {
-                if (line < size - 1) {
-                    return true;
-                } else {
-                    if (column < size_line - 1) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                if ((line == size - 1) && (column == sizeLine - 1)) {
+                    return false;
                 }
+                return true;
             }
 
             public Integer next() {
@@ -29,9 +24,9 @@ public class MatrixIterator implements Iterable<Integer> {
                     throw new IndexOutOfBoundsException();
                 }
                 column++;
-                if (column == size_line) {
+                if (column == sizeLine) {
                     line++;
-                    size_line = arr[line].length;
+                    sizeLine = arr[line].length;
                     column = 0;
                 }
                 return arr[line][column];
