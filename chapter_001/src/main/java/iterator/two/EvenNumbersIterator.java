@@ -26,10 +26,10 @@ public class EvenNumbersIterator implements Iterable<Integer> {
 
             @Override
             public Integer next() {
-                if (hasNext()) {
-                    return arr[position++];
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
                 }
-                throw new NoSuchElementException();
+                return arr[position++];
             }
         };
         return it;
