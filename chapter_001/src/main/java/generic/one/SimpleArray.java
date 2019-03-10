@@ -6,37 +6,43 @@ import java.util.Iterator;
 public class SimpleArray<T> implements Iterable<T> {
     private int size;
     private T[] arr;
-    private int position = 0;
     private int alive = 0;
 
     @SuppressWarnings("unchecked")
     public SimpleArray(int size, Class<T> clazz) {
         this.size = size;
-        this.arr = (T[]) Array.newInstance(clazz, 10);
+        this.arr = (T[]) Array.newInstance(clazz, size);
     }
 
     public void add(T model) {
-        if (position >= size - 1) {
+        if (alive >= size - 1) {
             throw new IndexOutOfBoundsException();
         }
-        arr[position++] = model;
-        alive++;
+        arr[alive++] = model;
     }
 
     public void set(int index, T model) {
-        arr[index] = model;
+        if (index < alive) {
+            arr[index] = model;
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     public T get(int index) {
-        return arr[index];
+        if (index < alive) {
+            return arr[index];
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     public void remove(int index) {
-        for (int i = index; i < alive - 1; i++) {
-            arr[i] = arr[i + 1];
+        if (index < alive) {
+            System.arraycopy(arr, index + 1, arr, index, alive - index - 1);
+        } else {
+            throw new IndexOutOfBoundsException();
         }
-        alive--;
-        size--;
     }
 
     @Override
