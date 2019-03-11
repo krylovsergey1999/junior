@@ -16,18 +16,27 @@ public abstract class AbstractStore<E extends Base> implements Store<E> {
 
     @Override
     public boolean replace(String id, E model) {
-        array.set(Integer.parseInt(id), model);
+        array.set(getId(id), model);
         return true;
     }
 
     @Override
     public boolean delete(String id) {
-        array.remove(Integer.parseInt(id));
+        array.remove(getId(id));
         return true;
     }
 
     @Override
     public E findById(String id) {
-        return array.get(Integer.parseInt(id));
+        return array.get(getId(id));
+    }
+
+    private int getId(String s) {
+        for (int i = 0; i < array.getSize(); i++) {
+            if (array.get(i).getId().equals(s)) {
+                return i;
+            }
+        }
+        throw new IndexOutOfBoundsException();
     }
 }
