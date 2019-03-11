@@ -1,26 +1,33 @@
 package generic.two;
 
-public class RoleStore implements Store {
-    public RoleStore() {
+import generic.one.SimpleArray;
+
+public class RoleStore implements Store<Role> {
+    private SimpleArray<Role> arr;
+
+    public RoleStore(int size) {
+        arr = new SimpleArray<>(size, Role.class);
     }
 
     @Override
-    public void add(Base model) {
-
+    public void add(Role model) {
+        arr.add(model);
     }
 
     @Override
-    public boolean replace(String id, Base model) {
-        return false;
+    public boolean replace(String id, Role model) {
+        arr.set(Integer.parseInt(id), model);
+        return true;
     }
 
     @Override
     public boolean delete(String id) {
-        return false;
+        arr.remove(Integer.parseInt(id));
+        return true;
     }
 
     @Override
-    public Base findById(String id) {
-        return null;
+    public Role findById(String id) {
+        return arr.get(Integer.parseInt(id));
     }
 }

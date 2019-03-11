@@ -23,7 +23,7 @@ public class UserStore implements Store<User> {
     @Override
     public boolean delete(String id) {
         arr.remove(Integer.parseInt(id));
-        return false;
+        return true;
     }
 
     @Override
