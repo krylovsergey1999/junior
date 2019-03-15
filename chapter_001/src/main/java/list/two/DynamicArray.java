@@ -21,11 +21,15 @@ public class DynamicArray<E> implements Iterable<E> {
         if (position < size) {
             this.container[position++] = value;
         } else {
-            this.container = Arrays.copyOf(container, size * 2);
+            this.container = extension();
             size = size * 2;
             this.container[position++] = value;
         }
         this.modCount++;
+    }
+
+    private E[] extension(){
+        return Arrays.copyOf(container, size * 2);
     }
 
     public E get(int index) {
@@ -51,7 +55,7 @@ public class DynamicArray<E> implements Iterable<E> {
                 if (mod != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                if (this.pos < position - 1) {
+                if (this.pos < position) {
                     return true;
                 }
                 return false;
