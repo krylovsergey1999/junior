@@ -21,15 +21,15 @@ public class DynamicArray<E> implements Iterable<E> {
         if (position < size) {
             this.container[position++] = value;
         } else {
-            this.container = extension();
-            size = size * 2;
-            this.container[position++] = value;
+            extension(value);
         }
         this.modCount++;
     }
 
-    private E[] extension(){
-        return Arrays.copyOf(container, size * 2);
+    private void extension(E x) {
+        this.container = Arrays.copyOf(container, size * 2);
+        size = size * 2;
+        this.container[position++] = x;
     }
 
     public E get(int index) {
