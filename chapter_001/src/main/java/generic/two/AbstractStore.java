@@ -16,19 +16,34 @@ public abstract class AbstractStore<E extends Base> implements Store<E> {
 
     @Override
     public boolean replace(String id, E model) {
-        array.set(getId(id), model);
-        return true;
+        int index = getId(id);
+        if (index != -1) {
+            array.set(index, model);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean delete(String id) {
-        array.remove(getId(id));
-        return true;
+        int index = getId(id);
+        if (index != -1) {
+            array.remove(index);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public E findById(String id) {
-        return array.get(getId(id));
+        int index = getId(id);
+        if (index != -1) {
+            return array.get(index);
+        } else {
+            return null;
+        }
     }
 
     private int getId(String s) {
@@ -37,6 +52,6 @@ public abstract class AbstractStore<E extends Base> implements Store<E> {
                 return i;
             }
         }
-        throw new IndexOutOfBoundsException();
+        return -1; // если ничего не нашли
     }
 }
