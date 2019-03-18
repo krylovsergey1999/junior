@@ -46,14 +46,14 @@ public class LinkList<E> implements Iterable<Link<E>> {
     }
 
     // удаление первого элемента
-    public Link<E> deleteFirst() {
+    public E deleteFirst() {
         modCount++;
         Link<E> temp = first;
         first = first.next;
         if (first != null) {
             first.prev = null;
         }
-        return temp;
+        return temp.getDate();
     }
 
     // вывод всего списка
@@ -65,6 +65,22 @@ public class LinkList<E> implements Iterable<Link<E>> {
             current = current.next;
         }
         System.out.println("");
+    }
+
+    //
+    public E deleteLast() {
+        modCount++;
+        Link<E> current = first;
+        while (current.next != null) {
+            current = current.next;
+        }
+        E value = current.getDate();
+        if (current.prev != null) {
+            current.prev.next = null;
+        } else {
+            first = null;
+        }
+        return value;
     }
 
     @Override

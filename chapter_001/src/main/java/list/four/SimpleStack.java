@@ -10,9 +10,7 @@ public class SimpleStack<T> {
     }
 
     public T poll() {
-        T value = stack.get(1);
-        stack.deleteFirst();
-        return value;
+        return stack.deleteFirst();
     }
 
     public void push(T value) {

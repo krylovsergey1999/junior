@@ -31,7 +31,7 @@ public class LinkListTest {
 
     @Test
     public void whenDeleteFirst() {
-        assertThat(list.deleteFirst().getDate(), is(20));
+        assertThat(list.deleteFirst(), is(20));
     }
 
     @Test
