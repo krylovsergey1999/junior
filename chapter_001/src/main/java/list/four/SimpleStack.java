@@ -16,4 +16,8 @@ public class SimpleStack<T> {
     public void push(T value) {
         stack.insertFirst(value);
     }
+
+    public boolean isEmpty() {
+        return stack.isEmpry();
+    }
 }
