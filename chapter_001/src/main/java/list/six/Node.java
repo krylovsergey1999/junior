@@ -9,8 +9,9 @@ public class Node<T> {
     }
 
     public static boolean hasCycle(Node first) {
-        if (first == null)
+        if (first == null) {
             return false;
+        }
         Node agentA = first;
         Node agentB = first.next;
         while (true) {
