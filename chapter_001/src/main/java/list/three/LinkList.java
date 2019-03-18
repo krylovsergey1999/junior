@@ -32,6 +32,9 @@ public class LinkList<E> implements Iterable<Link<E>> {
     public E get(int index) {
         Link<E> current = first;
         int number = 1;
+        if (number == index) {
+            return current.getDate();
+        }
         while (current != null) {
             current = current.next;
             number++;
@@ -47,7 +50,9 @@ public class LinkList<E> implements Iterable<Link<E>> {
         modCount++;
         Link<E> temp = first;
         first = first.next;
-        first.prev = null;
+        if (first != null) {
+            first.prev = null;
+        }
         return temp;
     }
 
