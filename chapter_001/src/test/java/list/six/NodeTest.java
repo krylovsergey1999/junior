@@ -27,7 +27,7 @@ public class NodeTest {
         two.next = third;
         third.next = four;
         four.next = first;
-        assertFalse(Node.hasCycle(first));
+        assertTrue(Node.hasCycle(first));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class NodeTest {
         first.next = two;
         two.next = third;
         third.next = two;
-        four.next = first;
+        four.next = null;
         assertTrue(Node.hasCycle(first));
     }
 }

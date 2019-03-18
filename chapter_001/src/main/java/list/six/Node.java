@@ -9,19 +9,19 @@ public class Node<T> {
     }
 
     public static boolean hasCycle(Node first) {
-        int maxStep = 100;
-        int step = 0;
-        Node elem = first.next;
-        if (elem == first) {
+        if (first == null)
             return false;
-        }
-        while (step != maxStep) {
-            step++;
-            elem = elem.next;
-            if (elem == first) {
+        Node agentA = first;
+        Node agentB = first.next;
+        while (true) {
+            if (agentA == agentB) {
+                return true;
+            }
+            if (agentA == null || agentB == null || agentB.next == null) {
                 return false;
             }
+            agentA = agentA.next;
+            agentB = agentB.next.next;
         }
-        return true;
     }
 }
