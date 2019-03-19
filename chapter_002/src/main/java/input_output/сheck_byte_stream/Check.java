@@ -4,16 +4,16 @@ import java.io.*;
 
 public class Check {
     boolean isNumber(InputStream in) {
-        try (DataInputStream din = new DataInputStream(new BufferedInputStream(in))) {
-            int value = din.readInt();
-            if (value % 2 == 0) {
+        try (BufferedReader input = new BufferedReader(new InputStreamReader(in))) {
+            String s = input.readLine();
+            int x = Integer.parseInt(s);
+            if (x % 2 == 0) {
                 return true;
             } else {
                 return false;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            return false;
         }
-        return true;
     }
 }
