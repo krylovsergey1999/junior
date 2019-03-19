@@ -1,12 +1,9 @@
-package input_output.сheck_byte_stream;
+package input.check;
 
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 

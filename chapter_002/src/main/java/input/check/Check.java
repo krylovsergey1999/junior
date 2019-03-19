@@ -1,4 +1,4 @@
-package input_output.сheck_byte_stream;
+package input.check;
 
 import java.io.*;
 
@@ -9,9 +9,8 @@ public class Check {
             int x = Integer.parseInt(s);
             if (x % 2 == 0) {
                 return true;
-            } else {
-                return false;
             }
+            return false;
         } catch (Exception e) {
             return false;
         }
