@@ -12,9 +12,10 @@ public class DynamicArray<E> implements Iterable<E> {
     private int size;
     private int modCount = 0;
 
-    public DynamicArray(int size, Class<E> clazz) {
+    @SuppressWarnings("unchecked")
+    public DynamicArray(int size) {
         this.size = size;
-        this.container = (E[]) Array.newInstance(clazz, size);
+        this.container = (E[]) new Object[size];
     }
 
     public void add(E value) {
@@ -72,5 +73,9 @@ public class DynamicArray<E> implements Iterable<E> {
                 return container[pos++];
             }
         };
+    }
+
+    public E[] getContainer() {
+        return container;
     }
 }

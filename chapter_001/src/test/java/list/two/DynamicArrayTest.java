@@ -17,7 +17,7 @@ public class DynamicArrayTest {
 
     @Before
     public void beforeTest() {
-        arr = new DynamicArray<>(3, Integer.class);
+        arr = new DynamicArray<>(3);
         arr.add(1);
         arr.add(2);
         arr.add(5);
