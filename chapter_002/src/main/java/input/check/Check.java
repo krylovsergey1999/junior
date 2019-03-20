@@ -1,7 +1,6 @@
 package input.check;
 
 import java.io.*;
-import java.math.BigInteger;
 
 public class Check {
     boolean isNumber(InputStream in) {
@@ -14,10 +13,8 @@ public class Check {
             int value = Integer.parseInt(String.valueOf(c));
             if (value % 2 == 0) {
                 return true;
-            } else {
-                return false;
             }
-
+            return false;
         } catch (Exception e) {
             return false;
         }
