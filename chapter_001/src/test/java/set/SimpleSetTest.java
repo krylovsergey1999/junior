@@ -15,7 +15,7 @@ public class SimpleSetTest {
 
     @Before
     public void init() {
-        set = new SimpleSet<>(10);
+        set = new SimpleSet<>(5);
         set.add(1);
         set.add(2);
         set.add(3);
@@ -27,6 +27,20 @@ public class SimpleSetTest {
         set.add(5);
         set.add(5);
         set.add(5);
+        assertThat(set.getSize(), is(4));
+    }
+
+    @Test
+    public void whenAddNull() {
+        set.add(null);
+        set.add(5);
+        assertThat(set.getSize(), is(5));
+    }
+
+    @Test
+    public void whenAddNullTwo() {
+        set.add(null);
+        set.add(null);
         assertThat(set.getSize(), is(4));
     }
 

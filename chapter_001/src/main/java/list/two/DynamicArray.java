@@ -45,6 +45,14 @@ public class DynamicArray<E> implements Iterable<E> {
         return size;
     }
 
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {

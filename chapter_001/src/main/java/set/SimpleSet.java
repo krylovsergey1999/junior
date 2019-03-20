@@ -7,20 +7,37 @@ import java.util.Iterator;
 
 public class SimpleSet<E> implements Iterable<E> {
     private DynamicArray<E> set;
-    private int size;
+    private int size = 0;
 
-    public SimpleSet(int initialCapacity) {
-        this.set = new DynamicArray<>(initialCapacity);
+    public SimpleSet(int length) {
+        this.set = new DynamicArray<>(length);
     }
 
     void add(E e) {
-        for (E el : set.getContainer()) {
-            if (e.equals(el)) {
-                return;
+        E[] arr = set.getContainer();
+        if (e == null) {
+            for (int i = 0; i < size; i++) {
+                if (arr[i] == null) {
+                    return;
+                }
             }
+            set.setPosition(set.getPosition() + 1);
+            size++;
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (e.equals(arr[i])) {
+                    return;
+                }
+            }
+            set.add(e);
+            size++;
         }
-        set.add(e);
-        size++;
+    }
+
+    public void see() {
+        for (E el : set.getContainer()) {
+            System.out.println(el);
+        }
     }
 
     @Override
