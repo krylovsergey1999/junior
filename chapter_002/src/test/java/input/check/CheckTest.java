@@ -38,6 +38,12 @@ public class CheckTest {
     }
 
     @Test
+    public void whenIsNumberFour() {
+        InputStream in = new ByteArrayInputStream("123мамамылараму12345678".getBytes(StandardCharsets.UTF_8));
+        assertFalse(obj.isNumber(in));
+    }
+
+    @Test
     public void whenIsNumberThree() {
         InputStream in = new ByteArrayInputStream("q1".getBytes(StandardCharsets.UTF_8));
         assertFalse(obj.isNumber(in));

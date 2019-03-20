@@ -8,6 +8,9 @@ public class Check {
             int el = 0;
             while (input.available() > 0) {
                 el = input.read();
+                if ((el < 48) | (el > 57)) {
+                    return false;
+                }
             }
             char c = (char) el;
             int value = Integer.parseInt(String.valueOf(c));
