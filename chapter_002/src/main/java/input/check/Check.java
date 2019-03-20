@@ -5,13 +5,19 @@ import java.math.BigInteger;
 
 public class Check {
     boolean isNumber(InputStream in) {
-        try (BufferedReader input = new BufferedReader(new InputStreamReader(in))) {
-            String s = input.readLine();
-            BigInteger x = new BigInteger(s);
-            if (x.mod(BigInteger.valueOf(2)).compareTo(BigInteger.valueOf(0)) == 0) {
-                return true;
+        try (BufferedInputStream input = new BufferedInputStream(in)) {
+            int el = 0;
+            while (input.available() > 0) {
+                el = input.read();
             }
-            return false;
+            char c = (char) el;
+            int value = Integer.parseInt(String.valueOf(c));
+            if (value % 2 == 0) {
+                return true;
+            } else {
+                return false;
+            }
+
         } catch (Exception e) {
             return false;
         }
