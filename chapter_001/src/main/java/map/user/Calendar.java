@@ -11,8 +11,12 @@ public class Calendar {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Calendar)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Calendar)) {
+            return false;
+        }
         Calendar calendar = (Calendar) o;
         return date == calendar.date;
     }
