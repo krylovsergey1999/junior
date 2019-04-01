@@ -1,5 +1,6 @@
 package map.user;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 public class User {
