@@ -19,14 +19,20 @@ public class BFS {
                     for(File f: el.listFiles()){
                         q.add(f);
                     }
-            } else
-            for(String element: exts) {
-                if (el.getName().endsWith(element)){
-                    set.add(el);
-                    break;
-                }
+            } else if (check(el.getName(), exts)) {
+                set.add(el);
             }
+
         }
         return set;
+    }
+
+    public boolean check(String name, List<String> exts) {
+        for(String element: exts) {
+            if (name.endsWith(element)){
+                return true;
+            }
+        }
+        return false;
     }
 }

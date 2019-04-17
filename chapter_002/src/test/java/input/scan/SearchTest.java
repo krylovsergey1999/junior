@@ -16,21 +16,22 @@ import static junit.framework.TestCase.assertTrue;
  */
 
 public class SearchTest {
-    String dir_str = System.getProperty("java.io.tmpdir") + "\\search";
+    String sep = File.separator;
+    String dir_str = System.getProperty("java.io.tmpdir") + sep + "search";
     File dir = new File(dir_str);
 
     @Before
     public void create() throws IOException {
         dir.mkdir();
-        File file1 = new File(dir_str + "\\1");
+        File file1 = new File(dir_str + sep + "1");
         file1.mkdir();
-        File file2 = new File(dir_str + "\\2");
+        File file2 = new File(dir_str + sep + "2");
         file2.mkdir();
-        File file_dir_1_xml1 = new File(dir_str + "\\1" + "\\qwerty.xml");
+        File file_dir_1_xml1 = new File(dir_str + sep + "1" + sep + "qwerty.xml");
         file_dir_1_xml1.createNewFile();
-        File file_dir_1_txt = new File(dir_str + "\\1" + "\\qwerty.txt");
+        File file_dir_1_txt = new File(dir_str + sep + "1" + sep + "qwerty.txt");
         file_dir_1_txt.createNewFile();
-        File file_dir_2_txt = new File(dir_str + "\\2" + "\\qwerty2.txt");
+        File file_dir_2_txt = new File(dir_str + sep + "2" + sep + "qwerty2.txt");
         file_dir_2_txt.createNewFile();
     }
 
@@ -41,7 +42,7 @@ public class SearchTest {
         list.add(".xml");
         List<File> res = ob.files(dir_str, list);
         List<File> expected = new ArrayList<>();
-        expected.add(new File(dir_str + "\\1" + "\\qwerty.xml"));
+        expected.add(new File(dir_str + sep + "1" + sep + "qwerty.xml"));
         assertTrue(res.containsAll(expected) && expected.containsAll(res));
     }
 
@@ -52,8 +53,8 @@ public class SearchTest {
         list.add(".txt");
         List<File> res = ob.files(dir_str, list);
         List<File> expected = new ArrayList<>();
-        expected.add(new File(dir_str + "\\1" + "\\qwerty.txt"));
-        expected.add(new File(dir_str + "\\2" + "\\qwerty2.txt"));
+        expected.add(new File(dir_str + sep + "1" + sep + "qwerty.txt"));
+        expected.add(new File(dir_str + sep + "2" + sep + "qwerty2.txt"));
         assertTrue(res.containsAll(expected) && expected.containsAll(res));
     }
 
