@@ -1,6 +1,4 @@
-package map.hashcode;
-
-import map.user.User;
+package map.two;
 
 import java.util.GregorianCalendar;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package map.user;
+package map.one;
 
 import org.junit.Before;
 import org.junit.Test;

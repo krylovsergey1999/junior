@@ -1,4 +1,4 @@
-package map.user;
+package map.one;
 
 import java.util.Calendar;
 import java.util.Objects;
