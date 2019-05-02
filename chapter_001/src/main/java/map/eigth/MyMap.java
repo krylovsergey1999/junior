@@ -21,6 +21,10 @@ public class MyMap<K, V> implements Iterable<MyMap.Entry<K, V>> {
             }
             return true;
         } else {
+            if (map[h].getKey().equals(key)) {
+                map[h].setValue(value);
+                return true;
+            }
             return false;
         }
     }
@@ -30,7 +34,7 @@ public class MyMap<K, V> implements Iterable<MyMap.Entry<K, V>> {
         if (map[h] != null) {
             return map[h].getValue();
         }
-        throw new NoSuchElementException("Нет такого элемента.");
+        return null;
     }
 
     public boolean delete(K key) {
@@ -45,10 +49,10 @@ public class MyMap<K, V> implements Iterable<MyMap.Entry<K, V>> {
     }
 
     public boolean expansion() {
-        int lengthNew = length * 2;
-        Entry<K, V>[] mapNew = new Entry[lengthNew];
+        this.length *= 2;
+        Entry<K, V>[] mapNew = new Entry[length];
         int sizeNew = 0;
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < this.map.length; i++) {
             if (map[i] != null) {
                 K key = map[i].getKey();
                 int h = hash(key);
@@ -58,7 +62,6 @@ public class MyMap<K, V> implements Iterable<MyMap.Entry<K, V>> {
                 }
             }
         }
-        setLength(lengthNew);
         setMap(mapNew);
         setSize(sizeNew);
         return true;

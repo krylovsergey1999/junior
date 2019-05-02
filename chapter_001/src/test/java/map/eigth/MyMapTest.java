@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -28,11 +29,7 @@ public class MyMapTest {
     public void whenGet() {
         assertThat(map.get(16), is("16"));
 
-        try {
-            assertThat(map.get(20), is("20"));
-        } catch (Exception e) {
-            assertTrue(true);
-        }
+        assertNull(map.get(20));
     }
 
     @Test
