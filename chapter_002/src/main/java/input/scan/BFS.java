@@ -15,10 +15,11 @@ public class BFS {
             File el = q.poll();
             if (el.isDirectory()) {
                 File[] l = el.listFiles();
-                if (l.length > 0)
-                    for(File f: el.listFiles()){
+                if (l.length > 0) {
+                    for (File f : el.listFiles()) {
                         q.add(f);
                     }
+                }
             } else if (check(el.getName(), exts)) {
                 set.add(el);
             }
@@ -28,8 +29,8 @@ public class BFS {
     }
 
     public boolean check(String name, List<String> exts) {
-        for(String element: exts) {
-            if (name.endsWith(element)){
+        for (String element : exts) {
+            if (name.endsWith(element)) {
                 return true;
             }
         }
