@@ -49,5 +49,16 @@ public class TreeTest {
         Iterator<Integer> iterator = tree.iterator();
         assertThat(iterator.next(), is(1));
     }
+
+    @Test
+    public void whenAddEqualsElement() {
+        Tree<Integer> tree = new Tree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 2);
+        assertThat(tree.getNodesCount(), is(2));
+        tree.add(2, 3);
+        tree.add(2, 3);
+        assertThat(tree.getNodesCount(), is(3));
+    }
 }
 
