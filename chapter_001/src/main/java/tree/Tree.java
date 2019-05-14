@@ -13,25 +13,24 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
 
     @Override
     public boolean add(E parent, E child) {
-        Optional<Node<E>> parentNode = this.findBy(parent);
-        boolean check = false;
-        if (parentNode.isPresent()) {
-            for (Node<E> el : parentNode.get().leaves()) {
-                if (el.eqValue(child)) {
-                    check = true;
-                }
+        ArrayList<Node<E>> listNodes = new ArrayList<Node<E>>();
+        getListNodes(listNodes, root);
+        Node<E> parentNode = null;
+        boolean checkHasChild = false;
+        for (Node<E> el : listNodes) {
+            if (el.eqValue(parent)) {
+                parentNode = el;
             }
-            if (!check) {
-                parentNode.get().add(new Node<>(child));
-                nodesCount++;
-                return true;
-            } else {
-                return false;
+            if (el.eqValue(child)) {
+                checkHasChild = true;
             }
-
-        } else {
-            return false;
         }
+        if (!checkHasChild && (parentNode != null)) {
+            parentNode.add(new Node<>(child));
+            this.nodesCount++;
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -52,6 +51,12 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         return rsl;
     }
 
+    public void getListNodes(ArrayList<Node<E>> list,Node<E> node) {
+        list.add(node);
+        for (Node<E> child : node.leaves()) {
+            getListNodes(list, child);
+        }
+    }
 
     @Override
     public Iterator<E> iterator() {
