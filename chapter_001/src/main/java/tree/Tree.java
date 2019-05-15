@@ -51,7 +51,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
         return rsl;
     }
 
-    public void getListNodes(ArrayList<Node<E>> list,Node<E> node) {
+    public void getListNodes(ArrayList<Node<E>> list, Node<E> node) {
         list.add(node);
         for (Node<E> child : node.leaves()) {
             getListNodes(list, child);
