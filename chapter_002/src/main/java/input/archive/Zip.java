@@ -5,6 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -12,12 +15,15 @@ import java.util.zip.ZipOutputStream;
 
 public class Zip {
     // seek - искать
-    public static List<File> seekBy(File file) {
+    public static List<File> seekBy(File file, String excule) {
         ArrayList<File> list = new ArrayList<>();
+        if (file.getName().endsWith(excule)) {
+            return list;
+        }
         if (file.isDirectory()) {
             list.add(file);
             for (File el : file.listFiles()) {
-                list.addAll(seekBy(el));
+                list.addAll(seekBy(el, excule));
             }
         } else {
             list.add(file);
@@ -26,16 +32,14 @@ public class Zip {
     }
 
     public static void main(String[] args) throws IOException {
-        //String source = "./chapter_002/src/main";
-        String directory = "C:\\Users\\krylo\\Documents\\junior";
-        String source = directory;
+        String source = Args.directory(args);
         String target = Args.output(args);
-        System.out.println(source);
+        String excule = Args.excule(args);
+
         File fileToSource = new File(source);
-        System.out.println(fileToSource.getPath());
         File fileToOut = new File(target);
 
-        List<File> files = seekBy(fileToSource);
+        List<File> files = seekBy(fileToSource, excule);
         pack(files, fileToOut);
     }
 
@@ -43,14 +47,12 @@ public class Zip {
         ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(target));
         for (File elem : sources) {
             String substring = elem.getPath();
-            //.substring(2);
             zipFile(elem, substring, zipOut);
         }
         zipOut.close();
     }
 
     private static void zipFile(File fileToZip, String fileName, ZipOutputStream zipOut) throws IOException {
-        System.out.println(fileName);
         if (fileToZip.isDirectory()) {
             if (fileName.endsWith("\\")) {
                 zipOut.putNextEntry(new ZipEntry(fileName));
