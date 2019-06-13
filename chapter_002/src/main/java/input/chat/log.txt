@@ -1,0 +1,16 @@
+Thu Jun 13 09:12:00 MSK 2019 : 1
+Thu Jun 13 09:12:00 MSK 2019 : Answer: today is the end of the world
+Thu Jun 13 09:12:01 MSK 2019 : 2
+Thu Jun 13 09:12:01 MSK 2019 : Answer: why why and how
+Thu Jun 13 09:12:02 MSK 2019 : 3
+Thu Jun 13 09:12:02 MSK 2019 : Answer: why why and how
+Thu Jun 13 09:12:04 MSK 2019 : stop
+Thu Jun 13 09:12:06 MSK 2019 : dsf
+Thu Jun 13 09:12:07 MSK 2019 : xcw
+Thu Jun 13 09:12:10 MSK 2019 : turn on
+Thu Jun 13 09:12:10 MSK 2019 : Answer: today is the end of the world
+Thu Jun 13 09:12:16 MSK 2019 : q
+Thu Jun 13 09:12:16 MSK 2019 : Answer: why why and how
+Thu Jun 13 09:12:19 MSK 2019 : nnslc
+Thu Jun 13 09:12:19 MSK 2019 : Answer: today is the end of the world
+Thu Jun 13 09:12:22 MSK 2019 : end
