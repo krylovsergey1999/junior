@@ -15,7 +15,7 @@ import java.util.zip.ZipOutputStream;
 
 public class Zip {
     // seek - искать
-    public static List<File> seekBy(File file, String excule) {
+    public List<File> seekBy(File file, String excule) {
         ArrayList<File> list = new ArrayList<>();
         if (file.getName().endsWith(excule)) {
             return list;
@@ -31,19 +31,7 @@ public class Zip {
         return list;
     }
 
-    public static void main(String[] args) throws IOException {
-        String source = Args.directory(args);
-        String target = Args.output(args);
-        String excule = Args.excule(args);
-
-        File fileToSource = new File(source);
-        File fileToOut = new File(target);
-
-        List<File> files = seekBy(fileToSource, excule);
-        pack(files, fileToOut);
-    }
-
-    public static void pack(List<File> sources, File target) throws IOException {
+    public void pack(List<File> sources, File target) throws IOException {
         ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(target));
         for (File elem : sources) {
             String substring = elem.getPath();
@@ -52,7 +40,7 @@ public class Zip {
         zipOut.close();
     }
 
-    private static void zipFile(File fileToZip, String fileName, ZipOutputStream zipOut) throws IOException {
+    private void zipFile(File fileToZip, String fileName, ZipOutputStream zipOut) throws IOException {
         if (fileToZip.isDirectory()) {
             if (fileName.endsWith("\\")) {
                 zipOut.putNextEntry(new ZipEntry(fileName));
@@ -69,5 +57,17 @@ public class Zip {
             zipOut.write(bytes);
             in.close();
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        String source = Args.directory(args).get();
+        String target = Args.output(args).get();
+        String excule = Args.excule(args).get();
+
+        File fileToSource = new File(source);
+        File fileToOut = new File(target);
+
+        List<File> files = new Zip().seekBy(fileToSource, excule);
+        new Zip().pack(files, fileToOut);
     }
 }

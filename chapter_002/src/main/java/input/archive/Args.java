@@ -2,9 +2,11 @@ package input.archive;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 public class Args {
-    public static String directory(String[] args) {
+    public static Optional<String> directory(String[] args) {
+        String result = new String();
         for (int i = 0; i < args.length; i++) {
             if (args[i].equals("-d")) {
                 String source = args[i + 1];
@@ -12,27 +14,29 @@ public class Args {
                 Path pathAbsolute = Paths.get(source);
                 Path pathBase = Paths.get(base);
                 Path relative = pathBase.relativize(pathAbsolute);
-                return relative.toString();
+                result = relative.toString();
             }
         }
-        return null;
+        return Optional.ofNullable(result);
     }
 
-    public static String excule(String[] args) {
+    public static Optional<String> excule(String[] args) {
+        String result = new String();
         for (int i = 0; i < args.length; i++) {
             if (args[i].equals("-e")) {
-                return args[i + 1].substring(1);
+                result = args[i + 1].substring(1);
             }
         }
-        return null;
+        return Optional.ofNullable(result);
     }
 
-    public static String output(String[] args) {
+    public static Optional<String> output(String[] args) {
+        String result = new String();
         for (int i = 0; i < args.length; i++) {
             if (args[i].equals("-o")) {
-                return args[i + 1];
+                result =  args[i + 1];
             }
         }
-        return null;
+        return Optional.ofNullable(result);
     }
 }
